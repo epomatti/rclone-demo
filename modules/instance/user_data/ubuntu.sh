@@ -5,8 +5,11 @@ export DEBIAN_FRONTEND=noninteractive
 apt update
 apt upgrade -y
 
-sudo apt install -y rclone rsync cron zip unzip
+sudo apt install -y rclone rsync cron
 
-curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
-unzip awscliv2.zip
-./aws/install
+
+### Fro troubleshooting ###
+# sudo apt install -y zip unzip
+# curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+# unzip awscliv2.zip
+# ./aws/install

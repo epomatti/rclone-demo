@@ -46,5 +46,5 @@ aws s3api put-object \
 rclone lsd mys3:
 rclone config show
 rclone ls mys3:my-bucket/folder/subfolder
-rclone copy /path/to/your/file.txt mys3:your-bucket-name --no-create
-rclone sync /local/folder mys3:your-bucket-name --no-create
+rclone copy /path/to/your/file.txt mys3:your-bucket-name --s3-no-check-bucket
+rclone sync /local/folder mys3:your-bucket-name --s3-no-check-bucket
