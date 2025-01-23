@@ -11,6 +11,11 @@ provider "aws" {
   region = var.aws_region
 }
 
+### Normal Setup with rclone ###
+module "bucket_rclone" {
+  source   = "./modules/s3/rclone-bucket"
+  workload = var.workload
+}
 
 ### CloudFront Setup ###
 module "bucket_oac" {

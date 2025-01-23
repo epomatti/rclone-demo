@@ -5,7 +5,8 @@
     "dictionaries": [],
     "words": [
         "noninteractive",
-        "rclone"
+        "rclone",
+        "rcloud"
     ],
     "ignoreWords": [],
     "import": []
