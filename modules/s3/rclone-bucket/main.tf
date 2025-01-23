@@ -9,7 +9,8 @@ resource "random_string" "random_suffix" {
 }
 
 resource "aws_s3_bucket" "main" {
-  bucket = "bucket-${var.workload}-${local.random_affix}"
+  bucket        = "bucket-${var.workload}-${local.random_affix}"
+  force_destroy = true
 }
 
 resource "aws_s3_bucket_server_side_encryption_configuration" "default" {
