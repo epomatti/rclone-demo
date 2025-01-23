@@ -41,6 +41,7 @@ resource "aws_ssm_parameter" "rcloud" {
   })
 }
 
+# Minimum permissions according to rclone documentation
 resource "aws_s3_bucket_policy" "default" {
   bucket = aws_s3_bucket.main.id
 
@@ -56,8 +57,11 @@ resource "aws_s3_bucket_policy" "default" {
           ]
         },
         "Action" : [
+          "s3:ListBucket",
+          "s3:DeleteObject",
           "s3:GetObject",
           "s3:PutObject",
+          "s3:PutObjectACL",
         ],
         "Resource" : "${aws_s3_bucket.main.arn}/*"
       }
