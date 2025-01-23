@@ -61,10 +61,20 @@ resource "aws_s3_bucket_policy" "default" {
           "s3:DeleteObject",
           "s3:GetObject",
           "s3:PutObject",
-          "s3:PutObjectACL",
         ],
-        "Resource" : "${aws_s3_bucket.main.arn}/*"
+        "Resource" : [
+          "${aws_s3_bucket.main.arn}/*",
+          "${aws_s3_bucket.main.arn}"
+        ]
       }
     ]
   })
 }
+
+# TODO: Removed for now
+# {
+#   "Effect" : "Allow",
+#   "Action" : "s3:ListAllMyBuckets",
+#   "Resource" : "arn:aws:s3:::*"
+# }
+
