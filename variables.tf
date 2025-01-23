@@ -13,3 +13,11 @@ variable "cloudfront_price_class" {
 variable "cloudfront_minimum_protocol_version" {
   type = string
 }
+
+variable "ec2_ami" {
+  type = string
+}
+
+variable "ec2_instance_type" {
+  type = string
+}

@@ -29,3 +29,18 @@ module "s3_permissions" {
   oac_bucket_id               = module.bucket_oac.bucket_id
   oac_bucket_arn              = module.bucket_oac.bucket_arn
 }
+
+module "vpc" {
+  source     = "./modules/vpc"
+  aws_region = var.aws_region
+  workload   = var.workload
+}
+
+module "instance" {
+  source        = "./modules/instance"
+  workload      = var.workload
+  ami           = var.ec2_ami
+  instance_type = var.ec2_instance_type
+  vpc_id        = module.vpc.vpc_id
+  subnet_id     = module.vpc.default_public_subnet_id
+}
