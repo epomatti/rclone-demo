@@ -12,7 +12,6 @@ data "aws_subnet" "selected" {
   id = var.subnet_id
 }
 
-# TODO: Rename to default
 resource "aws_instance" "default" {
   ami           = var.ami
   instance_type = var.instance_type
