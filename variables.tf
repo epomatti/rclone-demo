@@ -6,21 +6,12 @@ variable "workload" {
   type = string
 }
 
-### CloudFront ###
-variable "cloudfront_create" {
+### EC2 ###
+variable "ec2_create_instance" {
   type = bool
 }
 
-variable "cloudfront_price_class" {
-  type = string
-}
-
-variable "cloudfront_minimum_protocol_version" {
-  type = string
-}
-
-### EC2 ###
-variable "ec2_create_instance" {
+variable "ec2_auto_config_rclone" {
   type = bool
 }
 
@@ -31,3 +22,16 @@ variable "ec2_ami" {
 variable "ec2_instance_type" {
   type = string
 }
+
+### CloudFront ###
+# variable "cloudfront_create" {
+#   type = bool
+# }
+
+# variable "cloudfront_price_class" {
+#   type = string
+# }
+
+# variable "cloudfront_minimum_protocol_version" {
+#   type = string
+# }

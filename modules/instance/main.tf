@@ -40,7 +40,8 @@ resource "aws_instance" "default" {
     ignore_changes = [
       ami,
       associate_public_ip_address,
-      user_data
+      user_data,
+      availability_zone
     ]
   }
 
