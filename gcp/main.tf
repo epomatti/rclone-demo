@@ -22,4 +22,7 @@ module "rclone_instance" {
   instance_image        = var.instance_image
   instance_machine_type = var.instance_machine_type
   instance_zone         = var.instance_zone
+  network_name          = module.network.network_name
+  network_id            = module.network.network_id
+  subnetwork_id         = module.network.instances_subnetwork_id
 }

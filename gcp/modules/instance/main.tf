@@ -20,7 +20,8 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = "default"
+    network    = var.network_id
+    subnetwork = var.subnetwork_id
 
     access_config {
       // Ephemeral public IP
@@ -34,4 +35,16 @@ resource "google_compute_instance" "default" {
     email  = google_service_account.default.email
     scopes = ["cloud-platform"]
   }
+}
+
+resource "google_compute_firewall" "ssh_firewall" {
+  name    = "allow-ssh"
+  network = var.network_name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22"]
+  }
+
+  source_ranges = ["0.0.0.0/0"]
 }

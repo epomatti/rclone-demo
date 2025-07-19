@@ -9,3 +9,15 @@ variable "instance_image" {
 variable "instance_zone" {
   type = string
 }
+
+variable "network_id" {
+  type = string
+}
+
+variable "network_name" {
+  type = string
+}
+
+variable "subnetwork_id" {
+  type = string
+}
