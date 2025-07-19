@@ -14,11 +14,6 @@ resource "google_compute_instance" "default" {
     }
   }
 
-  // Local SSD disk
-  scratch_disk {
-    interface = "NVME"
-  }
-
   network_interface {
     network    = var.network_id
     subnetwork = var.subnetwork_id

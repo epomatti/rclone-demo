@@ -90,6 +90,11 @@ Create the variables file:
 cp config/local.auto.tfvars .auto.tfvars
 ```
 
+```sh
+gcloud compute images list --project=ubuntu-os-cloud --no-standard-images --filter="name~'2404'"
+```
+
+
 Deploy the infrastructure:
 
 > [!TIP]
