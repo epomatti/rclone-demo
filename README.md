@@ -2,7 +2,9 @@
 
 Setting up an environment on AWS to up sync files with S3.
 
-## Deploy
+## AWS
+
+### Deploy
 
 Create the variables file:
 
@@ -22,7 +24,7 @@ terraform apply -auto-approve
 
 Log into the EC2 instance, and the check for the `cloud-init status`.
 
-## Config
+### Config
 
 To configure rclone manually, get the access key information:
 
@@ -40,7 +42,7 @@ rclone config create mys3 s3 \
   region us-east-2
 ```
 
-## Testing
+### Testing
 
 Verify that rclone is configured:
 
@@ -79,3 +81,23 @@ Try with the `sync` command:
 ```sh
 rclone sync hello.txt "mys3:$BUCKET" --s3-no-check-bucket
 ```
+
+## GCP
+
+Create the variables file:
+
+```sh
+cp config/local.auto.tfvars .auto.tfvars
+```
+
+Deploy the infrastructure:
+
+> [!TIP]
+> Setting `ec2_auto_config_rclone = true` will config rclone via cloud-init
+
+```sh
+terraform init
+terraform apply -auto-approve
+```
+
+Log into the EC2 instance, and the check for the `cloud-init status`.
