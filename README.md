@@ -84,25 +84,27 @@ rclone sync hello.txt "mys3:$BUCKET" --s3-no-check-bucket
 
 ## GCP
 
+### Deploy
+
 Create the variables file:
 
 ```sh
 cp config/local.auto.tfvars .auto.tfvars
 ```
 
+Check for updated images:
+
 ```sh
 gcloud compute images list --project=ubuntu-os-cloud --no-standard-images --filter="name~'2404'"
 ```
 
+Set the required variables.
 
-Deploy the infrastructure:
-
-> [!TIP]
-> Setting `ec2_auto_config_rclone = true` will config rclone via cloud-init
+Create the infrastructure:
 
 ```sh
 terraform init
 terraform apply -auto-approve
 ```
 
-Log into the EC2 instance, and the check for the `cloud-init status`.
+
