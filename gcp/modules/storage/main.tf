@@ -1,5 +1,5 @@
 resource "google_storage_bucket" "rclone" {
-  name          = "rclone-bucket"
+  name          = "rclone-bucket-${var.project_id}"
   location      = var.bucket_location
   force_destroy = true
 

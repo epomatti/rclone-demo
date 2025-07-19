@@ -10,6 +10,7 @@ terraform {
 module "storage" {
   source          = "./modules/storage"
   bucket_location = var.bucket_location
+  project_id      = var.project_id
 }
 
 module "network" {
