@@ -16,3 +16,10 @@ module "storage" {
 module "network" {
   source = "./modules/network"
 }
+
+module "rclone_instance" {
+  source                = "./modules/instance"
+  instance_image        = var.instance_image
+  instance_machine_type = var.instance_machine_type
+  instance_zone         = var.instance_zone
+}
