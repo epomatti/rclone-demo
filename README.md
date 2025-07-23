@@ -118,6 +118,13 @@ gsutil iam get gs://your-bucket
 Create the service account key file with the name `service_account_key.json`.
 
 ```sh
+gcloud iam service-accounts keys create ~/service_account_key.json \
+  --iam-account my-service-account@my-project.iam.gserviceaccount.com
+```
+
+
+
+```sh
 rclone config create mygcs gcs \
   service_account_file service_account_key.json
 ```

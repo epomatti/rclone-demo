@@ -8,9 +8,15 @@ resource "google_storage_bucket" "rclone" {
     enabled = true
   }
 
+  retention_policy {
+    is_locked        = false
+    retention_period = 2592000
+  }
+
   lifecycle_rule {
     action {
-      type = "Delete"
+      type          = "SetStorageClass"
+      storage_class = "NEARLINE"
     }
     condition {
       age                                     = 0
@@ -29,7 +35,8 @@ resource "google_storage_bucket" "rclone" {
   }
   lifecycle_rule {
     action {
-      type = "Delete"
+      type          = "SetStorageClass"
+      storage_class = "NEARLINE"
     }
     condition {
       age                                     = 0
