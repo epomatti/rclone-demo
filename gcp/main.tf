@@ -26,3 +26,8 @@ module "rclone_instance" {
   network_id            = module.network.network_id
   subnetwork_id         = module.network.instances_subnetwork_id
 }
+
+module "iam" {
+  source      = "./modules/iam"
+  bucket_name = module.storage.bucket_name
+}
