@@ -52,7 +52,7 @@ rclone lsd mys3:
 rclone config show
 ```
 
-Default configuration fie should be located here:
+Default configuration file should be located here:
 
 ```sh
 /root/.config/rclone/rclone.conf
@@ -112,3 +112,72 @@ Permissions will be `roles/storage.objectCreator`. Check the bucket policy - not
 ```sh
 gsutil iam get gs://your-bucket
 ```
+
+### Configure Rclone
+
+Create the service account key file with the name `service_account_key.json`.
+
+```sh
+rclone config create mygcs gcs \
+  service_account_file service_account_key.json
+```
+
+### Testing
+
+Verify that rclone is configured:
+
+```sh
+rclone listremotes --long
+rclone lsd mygcs:
+rclone config show
+```
+
+Default configuration file should be located here:
+
+```sh
+/root/.config/rclone/rclone.conf
+```
+
+Create a local test file in the EC2 instance:
+
+```sh
+echo "Hello" > hello.txt
+```
+
+Copy the file to via rclone to S3:
+
+```sh
+rclone copy hello.txt "mygcs:$BUCKET" --no-traverse --ignore-existing --log-level INFO
+```
+
+Check the remote copy:
+
+```sh
+rclone ls mys3:$BUCKET/hello.txt
+```
+
+Try with the `sync` command:
+
+```sh
+rclone sync hello.txt "mys3:$BUCKET" --s3-no-check-bucket
+
+rclone rcat gcs:your-bucket-name/hello.txt < hello.txt
+```
+
+```sh
+cat hello.txt | rclone rcat gcs:your-bucket-name/hello.txt
+```
+
+```toml
+[mygcs]
+type = gcs
+service_account_file = service_account_key.json
+no_check_bucket = true
+```
+
+--no-check-dest
+
+
+--gcs-bucket-policy-only
+
+--gcs-no-acl

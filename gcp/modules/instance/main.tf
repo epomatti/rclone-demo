@@ -30,6 +30,10 @@ resource "google_compute_instance" "default" {
     email  = google_service_account.default.email
     scopes = ["cloud-platform"]
   }
+
+  lifecycle {
+    ignore_changes = [metadata]
+  }
 }
 
 resource "google_compute_firewall" "ssh_firewall" {
