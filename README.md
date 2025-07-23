@@ -107,4 +107,8 @@ terraform init
 terraform apply -auto-approve
 ```
 
+Permissions will be `roles/storage.objectCreator`. Check the bucket policy - not IAM - to confirm the permissions:
 
+```sh
+gsutil iam get gs://your-bucket
+```
