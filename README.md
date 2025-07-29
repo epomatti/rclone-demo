@@ -188,3 +188,12 @@ no_check_bucket = true
 --gcs-bucket-policy-only
 
 --gcs-no-acl
+
+
+
+
+
+
+
+rclone copy hello.txt "mygcs:rclone-bucket-nodal-algebra-355718" --gcs-bucket-policy-only --ignore-existing
+rclone copy hello.txt "mygcs:rclone-bucket-nodal-algebra-355718" --gcs-bucket-policy-only --ignore-existing --no-check-dest
