@@ -86,6 +86,12 @@ rclone sync hello.txt "mys3:$BUCKET" --s3-no-check-bucket
 
 ### Deploy
 
+Login to GCP:
+
+```sh
+gcloud auth login
+```
+
 Create the variables file:
 
 ```sh
