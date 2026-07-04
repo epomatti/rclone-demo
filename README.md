@@ -9,7 +9,7 @@ Setting up an environment on AWS to up sync files with S3.
 Create the variables file:
 
 ```sh
-cp config/local.auto.tfvars .auto.tfvars
+cp config/default.tfvars .auto.tfvars
 ```
 
 Deploy the infrastructure:
@@ -89,13 +89,17 @@ rclone sync hello.txt "mys3:$BUCKET" --s3-no-check-bucket
 Login to GCP:
 
 ```sh
+# General Access
 gcloud auth login
+
+# Terraform
+gcloud auth application-default login
 ```
 
 Create the variables file:
 
 ```sh
-cp config/local.auto.tfvars .auto.tfvars
+cp config/default.tfvars .auto.tfvars
 ```
 
 Check for updated images:
@@ -120,6 +124,17 @@ gsutil iam get gs://your-bucket
 ```
 
 ### Configure Rclone
+
+Connect using IAP secure tunneling:
+
+```sh
+# For increased AIP tunnel performance
+# https://docs.cloud.google.com/iap/docs/using-tcp-forwarding#increasing_the_tcp_upload_bandwidth
+$(gcloud info --format="value(basic.python_location)") -m pip install numpy
+
+# Connect to the instance
+gcloud compute ssh rclone-instance --zone=southamerica-east1-a --tunnel-through-iap --project <project>
+```
 
 Create the service account key file with the name `service_account_key.json`.
 
