@@ -139,15 +139,15 @@ gcloud compute ssh rclone-instance --zone=southamerica-east1-a --tunnel-through-
 Create the service account key file with the name `service_account_key.json`.
 
 ```sh
-gcloud iam service-accounts keys create ~/service_account_key.json \
-  --iam-account my-service-account@my-project.iam.gserviceaccount.com
+gcloud iam service-accounts keys create ./key.json \
+  --iam-account rclone-service-account@<PROJECT_ID>iam.gserviceaccount.com
 ```
 
-
+Initialize the configuration with the account key file:
 
 ```sh
 rclone config create mygcs gcs \
-  service_account_file service_account_key.json
+  service_account_file "$(pwd)/key.json" no_check_bucket true
 ```
 
 ### Testing
@@ -176,6 +176,8 @@ Copy the file to via rclone to S3:
 
 ```sh
 rclone copy hello.txt "mygcs:$BUCKET" --no-traverse --ignore-existing --log-level INFO
+
+rclone copy hello.txt "mygcs:$BUCKET" --gcs-bucket-policy-only --ignore-existing --no-check-dest
 ```
 
 Check the remote copy:

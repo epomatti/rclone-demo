@@ -3,6 +3,10 @@ resource "google_service_account" "rclone" {
   display_name = "rclone"
 }
 
+resource "google_service_account_key" "rclone" {
+  service_account_id = google_service_account.rclone.name
+}
+
 resource "google_project_iam_custom_role" "rclone_sync_role" {
   role_id     = "rcloneObjectSync"
   title       = "Rclone Sync"
@@ -10,7 +14,8 @@ resource "google_project_iam_custom_role" "rclone_sync_role" {
 
   permissions = [
     "storage.objects.create",
-    "storage.objects.delete"
+    "storage.objects.delete",
+    "storage.objects.get"
   ]
 }
 

@@ -17,6 +17,12 @@ module "network" {
   source = "./modules/network"
 }
 
+module "iam" {
+  source      = "./modules/iam"
+  bucket_name = module.storage.bucket_name
+  project_id  = var.project_id
+}
+
 module "rclone_instance" {
   source                = "./modules/instance"
   instance_image        = var.instance_image
@@ -25,9 +31,8 @@ module "rclone_instance" {
   network_name          = module.network.network_name
   network_id            = module.network.network_id
   subnetwork_id         = module.network.instances_subnetwork_id
-}
 
-module "iam" {
-  source      = "./modules/iam"
-  bucket_name = module.storage.bucket_name
+  depends_on = [
+    module.iam,
+  ]
 }
